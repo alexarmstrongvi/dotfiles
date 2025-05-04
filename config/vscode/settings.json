@@ -1,0 +1,50 @@
+{
+    // Text Editor
+    "editor.renderWhitespace": "all",
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "editor.formatOnType": true,
+    // Workbench
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.startupEditor": "none",
+    // Features - Notebook
+    "notebook.lineNumbers": "on",
+    ////////////////////////////////////////////////////////////////////////////
+    // Extensions 
+    ////////////////////////////////////////////////////////////////////////////
+    // Git
+    "git.autofetch": true,
+    // Vim
+    "vim.smartRelativeLine": true,
+    "vim.vimrc.enable": true,
+    // Python
+    "python.linting.pylintEnabled": false,
+    //"python.linting.mypyEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.formatting.provider": "autopep8",
+    "ruff.enable": true,
+    "ruff.configuration": "$XDG_CONFIG_HOME/ruff/pyproject.toml",
+    // Julia
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt",
+    ],
+    "julia.enableTelemetry": true,
+    "julia.symbolCacheDownload": true,
+    "julia.executablePath": "/opt/homebrew/bin/julia",
+    "julia.enableCrashReporter": true,
+    "editor.minimap.enabled": false,
+    "git.openRepositoryInParentFolders": "never",
+    "workbench.sideBar.location": "right",
+    "github.copilot.advanced": {
+        "authProvider": "github"
+    },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+}

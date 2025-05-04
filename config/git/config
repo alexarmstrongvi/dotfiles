@@ -1,0 +1,39 @@
+# Note: Only Git (1.7.10+) allows this file to be included in the main
+#       .gitconfig file using the syntax 'path = /path/to/file'. It will
+#       be silently ignored otherwise.
+[include]
+    path = "~/.gitconfig-local"
+
+[alias]
+    unstage = reset HEAD --
+
+    # Nicely formatted history
+    hist = log --graph --pretty=format:'%h %ad | %s%d [%an]' --date=short
+    lg   = log --graph --decorate --all --abbrev-commit --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    # See http://blog.kfish.org/2010/04/git-lola.html
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+    stash-revert = "!f() { N=${1:-0}; git stash show -p stash@{${N}} | git apply --reverse; }; f"
+
+[init]
+    defaultBranch = main
+
+# [safe]
+#     directory = *
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+; [merge]
+;     tool = vimdiff
+;     conflictStyle = diff3
+
+; [mergetool "vimdiff"]
+;     prompt = false
+
+[pull]
+    rebase = false
+

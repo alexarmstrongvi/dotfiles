@@ -1,0 +1,4 @@
+# Ignore 3rd party managed files and directories
+config/nvim/plugin/packer_compiled.lua
+config/nvim/lazy-lock.json
+config/vim/pack/*

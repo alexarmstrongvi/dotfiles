@@ -1,0 +1,40 @@
+# Specific files #
+##################
+local_bash_profile.sh 
+
+# Environment #
+###################
+.python-version
+*.code-workspace
+
+# Compiled source #
+###################
+*.o
+*.so
+*.pyc
+*.egg-info
+
+# Temporary files #
+###################
+.netrwhist
+*.swp
+*~
+.ipynb_checkpoints
+tmp*
+
+# Packages #
+############
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+#*.log
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
