@@ -2,7 +2,7 @@
 #       .gitconfig file using the syntax 'path = /path/to/file'. It will
 #       be silently ignored otherwise.
 [include]
-    path = "~/.gitconfig-local"
+    path = "~/.config/git/config-local"
 
 [alias]
     unstage = reset HEAD --

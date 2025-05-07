@@ -20,3 +20,7 @@ Clone the repo and then from inside it run
 ```sh 
 source install.sh
 ```
+## Local configuration
+* symlink machine specific configs from `machine/`:
+    * bashrc -> ~/.bashrc-machine
+* edit `config/git/config-local-template` and then copy it to `config/git/config-local`

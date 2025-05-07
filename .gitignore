@@ -1,3 +1,6 @@
+# Ignore local configs
+config/git/config-local
+
 # Ignore 3rd party managed files and directories
 config/nvim/plugin/packer_compiled.lua
 config/nvim/lazy-lock.json

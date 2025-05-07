@@ -29,6 +29,15 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GHCUP_USE_XDG_DIRS=true
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 export JULIAUP_DEPOT_PATH="$XDG_DATA_HOME/julia"
+# Required for anything before Vim 9.1.0327
+export VIMINIT="
+    if has ('nvim')
+        so ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim
+    else
+        set nocp
+        so ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc
+    endif
+"
 
 # Set configuration file for non-interactive shells
 if [ -f .bash_env ]; then
@@ -58,11 +67,9 @@ fi
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad # Dark color scheme
 if command -v dircolors &> /dev/null; then
-    eval $(dircolors $HOME/.local/share/dircolors/dircolors.ansi-universal)
+    eval $(dircolors $XDG_DATA_HOME/dircolors/dircolors.ansi-universal)
 fi
 #export LS_COLORS=
-# - 'grep'
-export GREP_OPTIONS='--color=auto --binary-files=without-match'
 
 # Load and configure git prompt utils
 # See https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
@@ -122,8 +129,6 @@ export BLOCKSIZE=1k # 1024 byte blocks
 # Useful functions and aliases
 alias showPATH="tr ':' '\n' <<< \""'$PATH'"\""
 alias showPYPATH="tr ':' '\n' <<< \""'$PYTHONPATH'"\""
-# Print path to file
-pwdf() { echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1"); }
 # Verbose ls
 alias ll='ls -FGlAhpa'
  # Tally up occurances in output
@@ -133,25 +138,25 @@ alias dupwd="du -a -h -d 1 | sort -hr"
 # Activate virtual environments
 alias activate="source $HOME/.local/bin/activate.sh"
 
-if is_interactive_shell; then
-    # NOTE: Don't override cd, grep, or ls
-    command_exists rg  && alias rg='rg --smart-case';
-    command_exists bat && alias cat='bat';
-    # command_exists fd  && alias find='fd'; # Breaks shell scripts
-    if command_exists eza; then
-        # NOTE: Don't override ls. It breaks tab-completion (at least in zshell
-        # on my Mac)
-        alias la='eza --all --group-directories-first'
-        alias ll='eza --all --group-directories-first --long --header --icons --smart-group --git'
-    fi
-fi
+# NOTE: Be cautious when overriding cd, grep, find, or ls. It can break other tools.
 # Safer options
 alias rm='rm -I'
 alias mv='mv -i'
+# Preferred options
+alias grep='grep -r --color=auto --binary-files=without-match'
+
+command_exists rg  && alias rg='rg --smart-case';
+command_exists bat && alias cat='bat';
+if command_exists eza; then
+    # NOTE: Don't override ls. It breaks tab-completion (at least in zshell
+    # on my Mac)
+    alias la='eza --all --group-directories-first'
+    alias ll='eza --all --group-directories-first --long --header --icons --smart-group --git'
+fi
 
 ################################################################################
 # Site specific configuration
-machine_bashrc=$HOME/.bashrc-machine
+machine_bashrc=$HOME/.bashrc-local
 if [ -f $machine_bashrc ]; then
     # Add symlink to include machine profile using above name convention
     source $machine_bashrc

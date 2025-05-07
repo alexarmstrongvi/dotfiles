@@ -31,6 +31,19 @@ function command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+if ! command_exists realpath; then
+    function realpath() {
+	local path="$1"
+	if [ -d "$path" ]; then
+	    (cd "$path" 2>/dev/null && pwd)
+	else
+	    local dname="$(dirname $path)"
+	    local bname="$(basename $path)"
+	    (cd "$dname" 2>/dev/null && echo "$(pwd)/$bname")
+	fi
+    }
+fi
+
 function print_shell_type() {
     # To demo all types of shells, open a terminal emulator and follow steps below 
     # 1) The current interactive shell type

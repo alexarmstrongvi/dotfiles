@@ -16,8 +16,8 @@ if !has('nvim')
     " set runtimepath+=$XDG_DATA_HOME/vim
     if v:version < 800
         " Plugin paths had not been standardized yet
-	set runtimepath+=$XDG_CONFIG_HOME/vim/pack/myplugins/start/*
-	set runtimepath+=$XDG_CONFIG_HOME/vim/pack/myplugins/opt/*
+        set runtimepath+=$XDG_CONFIG_HOME/vim/pack/myplugins/start/*
+        set runtimepath+=$XDG_CONFIG_HOME/vim/pack/myplugins/opt/*
     endif
     set runtimepath+=$XDG_CONFIG_HOME/vim/after
 

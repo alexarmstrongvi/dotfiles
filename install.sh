@@ -1,9 +1,12 @@
-REPO_PATH="$(realpath ${BASH_SOURCE[0]})"
+REL_PATH="${BASH_SOURCE[0]}"
+REPO_PATH="$(dirname $REL_PATH)"
+source "$REPO_PATH/local/lib/bash_utils.sh"
+
+REPO_PATH="$(realpath $REPO_PATH)"
 if [ ! -d "$REPO_PATH" ]; then
-    echo "ERROR | Unable to determine dotfiles repo path"
-    exit 1
+    echo "ERROR | Unable to determine dotfiles repo path from ${BASH_SOURCE[0]}"
+    return 1
 fi
-source $REPO_PATH/local/lib/bash_utils.sh
 
 ################################################################################
 # Globals
@@ -14,7 +17,7 @@ CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 ################################################################################
 # Functions
 ################################################################################
-checked_ln() { 
+checked_ln() {
     local src="$1"
     local tgt="$2"
     if [[ -L "$tgt" && "$(readlink $tgt)" = "$src" ]]; then
@@ -24,15 +27,15 @@ checked_ln() {
     if [ -L "$tgt" ]; then
         echo "WARNING | Symlink exists: $tgt -> $(readlink $tgt)"
     fi
-    if [ -d "$tgt" ]; then
+    if [ -e "$tgt" ]; then
         if [ -L "$tgt" ]; then
             rm -i "$tgt"
         else
-            echo "ERROR | Target directory exists and is not a symlink: $tgt"
+            echo "ERROR | Target path exists and is not a symlink: $tgt"
             return 1
         fi
     fi
-    ln -isvw "$1" "$2" 
+    ln -isv "$1" "$2"
 }
 
 ################################################################################
@@ -46,13 +49,12 @@ if [[ ! -d "$CONFIG_HOME" || -L "$CONFIG_HOME" ]]; then
     checked_ln ${REPO_PATH}/config "$CONFIG_HOME"
 else
     for p in "${REPO_PATH}/config"/*; do
-        echo "A: $p"
         checked_ln "$p" "${CONFIG_HOME}/$(basename $p)"
     done
 fi
 
 # Link non-XDG compliant config files
-for p in "${REPO_PATH}/home"/.*; do
+for p in "${REPO_PATH}/home"/.[A-Za-z]*; do
     checked_ln "$p" "${HOME}/$(basename $p)"
 done
 
@@ -67,13 +69,14 @@ for p in $(find "${REPO_PATH}/local" -type f); do
 done
 
 # Special handling
-for p in "$REPO_PATH/config/vscode"/{keybindings.json,settings.json,snippets}; do
+if is_mac; then
     tgt_dir="$HOME/Library/Application Support/Code/User"
     if [ ! -d "$tgt_dir" ]; then
-        echo "WARNING | Unable to find VSCode settings file location"
-        break
+	mkdir -pv "$tgt_dir"
     fi
-    checked_ln "$p" "$tgt_dir/$(basename $p)" 
-done
+    for p in "$REPO_PATH/config/vscode"/{keybindings.json,settings.json,snippets}; do
+        checked_ln "$p" "$tgt_dir/$(basename $p)"
+    done
+fi
 
 print_success "dotfile installation complete"
