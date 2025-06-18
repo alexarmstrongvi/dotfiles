@@ -22,7 +22,11 @@ code --install-extension eamodio.gitlens
 code --install-extension mhutchie.git-graph
 
 # C++ & CMake
-code --install-extension ms-vscode.cpptools-extension 
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.cpptools-extension-pack
+code --install-extension ms-vscode.cpptools-themes
+code --install-extension ms-vscode.cmake-tools
+code --install-extension llvm-vs-code-extensions.vscode-clangd
 
 # Vim mode
 code --install-extension vscodevim.vim
@@ -30,9 +34,5 @@ code --install-extension vscodevim.vim
 # Code alignment using regex
 code --install-extension janjoerke.align-by-regex
 
-# C++
-code --install-extension ms-vscode.cpptools
-code --install-extension ms-vscode.cpptools-extension-pack
-code --install-extension ms-vscode.cpptools-themes
-code --install-extension ms-vscode.cmake-tools
-code --install-extension llvm-vs-code-extensions.vscode-clangd
+# Microsoft
+code --install-extension ms-vscode.powershell

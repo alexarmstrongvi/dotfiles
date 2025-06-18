@@ -1,4 +1,3 @@
-
 function New-HardLinkChecked {
     [CmdletBinding()]
     param (
@@ -8,7 +7,6 @@ function New-HardLinkChecked {
         [Parameter(Mandatory=$true)]
         [string]$Target
     )
-
     if ((Test-Path $Path) -And (Get-Item $Path).PSIsContainer) {
         # Directory target provided so assume caller wants to use target filename
         $Path = Join-Path -Path $Path -ChildPath (Split-Path -Path $Target -Leaf)
