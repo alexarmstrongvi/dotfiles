@@ -1,12 +1,12 @@
 ################################################################################
-# Script to install VS Code extensions
+# Script to install VS Code extensions (this can be run by bash or powershell)
 #
 # Get started with code 
 # >> code --list-extensions > install_extensions.sh
 # Note that some packages install their own extensions
 ################################################################################
 # Text editing
-code --install-extension stkb.rewrap
+code --install-extension dnut.rewrap-revived
 
 # Python
 code --install-extension ms-python.python
@@ -30,4 +30,9 @@ code --install-extension vscodevim.vim
 # Code alignment using regex
 code --install-extension janjoerke.align-by-regex
 
-
+# C++
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.cpptools-extension-pack
+code --install-extension ms-vscode.cpptools-themes
+code --install-extension ms-vscode.cmake-tools
+code --install-extension llvm-vs-code-extensions.vscode-clangd
