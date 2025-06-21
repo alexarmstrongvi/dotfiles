@@ -21,7 +21,8 @@ ignore = [
     "D203",  # One blank line before class docstring
     "D213",  # Multi-line summary second line
     ######################################## 
-    # Security
+    # Security (flake8-bandit)
+    "S101", # Use of assert detected
     "S311", # Standard pseudo-random generators are not suitable for cry
     ######################################## 
     # Miscellaneous
@@ -34,3 +35,14 @@ ignore = [
     "TD003",  # Missing issue link on the line following this TODO
     "TRY003", # Avoid specifying long messages outside the exception class
 ]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 100
+
+[tool.ruff.lint.isort]
+# import-heading-stdlib = "Standard library"
+# import-heading-thirdparty = "3rd party"
+# import-heading-firstparty = "1st party"
+# import-heading-localfolder = "Local"
+force-sort-within-sections = true
+#multi-line-output = 3
