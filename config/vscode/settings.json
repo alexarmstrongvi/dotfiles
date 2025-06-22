@@ -7,23 +7,34 @@
         100
     ],
     "editor.formatOnType": true,
+    // File handling
+    "files.associations": {
+        "*.scxml": "xml"
+    },
+    "files.trimTrailingWhitespace": true,
     // Workbench
     "workbench.colorTheme": "Default Dark+",
     "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
     // Features - Notebook
     "notebook.lineNumbers": "on",
+
     ////////////////////////////////////////////////////////////////////////////
     // Terminal
     "terminal.integrated.sendKeybindingsToShell" : true,
 
     ////////////////////////////////////////////////////////////////////////////
-    // Extensions 
+    // Extensions
     ////////////////////////////////////////////////////////////////////////////
     // Git
     "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
     // Vim
     "vim.smartRelativeLine": true,
     "vim.vimrc.enable": true,
+    "vim.handleKeys": {
+        "<C-p>": false
+    },
     // Python
     "python.linting.pylintEnabled": false,
     //"python.linting.mypyEnabled": true,
@@ -31,6 +42,12 @@
     "python.formatting.provider": "autopep8",
     "ruff.enable": true,
     "ruff.configuration": "$XDG_CONFIG_HOME/ruff/pyproject.toml",
+    // C++
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "c:\\Users\\aarmstrong\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\19.1.2\\clangd_19.1.2\\bin\\clangd.exe",
+    // CMake
+    "cmake.configureOnOpen": false,
+    "cmake.configureOnEdit": false,
     // Julia
     "terminal.integrated.commandsToSkipShell": [
         "language-julia.interrupt",
@@ -40,8 +57,7 @@
     "julia.executablePath": "/opt/homebrew/bin/julia",
     "julia.enableCrashReporter": true,
     "editor.minimap.enabled": false,
-    "git.openRepositoryInParentFolders": "never",
-    "workbench.sideBar.location": "right",
+    // Copilot
     "github.copilot.advanced": {
         "authProvider": "github"
     },
