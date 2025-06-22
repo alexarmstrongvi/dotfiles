@@ -2,7 +2,7 @@ print("Autoloading after/plugin/*")
 
 --------------------------------------------------------------------------------
 -- Neovim colorschemes
-vim.cmd.colorscheme('vscode') -- Not Working
+vim.cmd.colorscheme('vscode')
 -- vim.cmd.colorscheme('tokyonight') -- Not Working
 -- vim.cmd.colorscheme('rose-pine') -- Not Working
 -- Vim colorschemes
@@ -20,11 +20,12 @@ vim.cmd.colorscheme('vscode') -- Not Working
 
 --------------------------------------------------------------------------------
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-vim.keymap.set('n', '<leader>ps', function()
-    builtin.grep_string({ search = vim.fn.input("Grep > ") });
-end)
+vim.keymap.set('n', '<leader>sf', builtin.find_files,  { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sk', builtin.keymaps,     { desc = '[S]earch [K]eymaps' })
+vim.keymap.set('n', '<leader>s/', builtin.live_grep,   { desc = '[S]earch by [G]rep' })
+-- vim.keymap.set('n', '<leader>ps', function()
+--     builtin.grep_string({ search = vim.fn.input("Grep > ") });
+-- end)
 
 --------------------------------------------------------------------------------
 require("nvim-surround").setup()
@@ -36,29 +37,29 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 --------------------------------------------------------------------------------
-local navic = require("nvim-navic")
-local lspconfig = require("lspconfig")
+-- local navic = require("nvim-navic")
+-- local lspconfig = require("lspconfig")
 
-lspconfig.clangd.setup {
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-    end
-}
-navic.setup({
-    highlight = true,
-    lsp = {
-        auto_attach = true,
-    }
-})
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-lspconfig.hls.setup {
-    on_attach = function(_, bufnr)
-        -- Enable hover to display inferred type
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {
-            noremap = true, silent = true
-        })
-    end
-}
+-- lspconfig.clangd.setup {
+--     on_attach = function(client, bufnr)
+--         navic.attach(client, bufnr)
+--     end
+-- }
+-- navic.setup({
+--     highlight = true,
+--     lsp = {
+--         auto_attach = true,
+--     }
+-- })
+-- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+-- lspconfig.hls.setup {
+--     on_attach = function(_, bufnr)
+--         -- Enable hover to display inferred type
+--         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {
+--             noremap = true, silent = true
+--         })
+--     end
+-- }
 
 --------------------------------------------------------------------------------
 local treesitter = require('nvim-treesitter.configs')

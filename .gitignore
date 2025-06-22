@@ -5,3 +5,5 @@ config/git/config-local
 config/nvim/plugin/packer_compiled.lua
 config/nvim/lazy-lock.json
 config/vim/pack/*
+config/iterm2
+home/.zsh/

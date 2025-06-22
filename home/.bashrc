@@ -143,6 +143,7 @@ alias activate="source $HOME/.local/bin/activate.sh"
 alias rm='rm -I'
 alias mv='mv -i'
 # Preferred options
+# NOTE: Don't make '--recursive' default. It messes up piping from stdout
 alias grep='grep --color=auto --binary-files=without-match'
 
 command_exists rg  && alias rg='rg --smart-case';
