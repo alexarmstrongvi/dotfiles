@@ -1,3 +1,13 @@
 // Place your key bindings in this file to override the defaults
 [
+    {
+        "key": "ctrl+shift+space",
+        "command": "editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus && vim.mode != 'Insert'"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorTextFocus && vim.mode != 'Insert'"
+    },
 ]

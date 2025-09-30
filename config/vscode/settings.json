@@ -1,4 +1,7 @@
 {
+    ////////////////////////////////////////////////////////////////////////////
+    // VS Code builtins
+    ////////////////////////////////////////////////////////////////////////////
     // Text Editor
     "editor.renderWhitespace": "all",
     "editor.lineNumbers": "relative",
@@ -7,6 +10,7 @@
         100
     ],
     "editor.formatOnType": true,
+    "editor.minimap.enabled": false,
     // File handling
     "files.associations": {
         "*.scxml": "xml"
@@ -18,9 +22,13 @@
     "workbench.sideBar.location": "right",
     // Features - Notebook
     "notebook.lineNumbers": "on",
-
-    ////////////////////////////////////////////////////////////////////////////
     // Terminal
+    "terminal.integrated.profiles.windows" : {
+        "PowerShell 7" : {
+            "path" : "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        },
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell 7",
     "terminal.integrated.sendKeybindingsToShell" : true,
 
     ////////////////////////////////////////////////////////////////////////////
@@ -42,9 +50,6 @@
     "python.formatting.provider": "autopep8",
     "ruff.enable": true,
     "ruff.configuration": "$XDG_CONFIG_HOME/ruff/pyproject.toml",
-    // C++
-    "C_Cpp.intelliSenseEngine": "disabled",
-    "clangd.path": "c:\\Users\\aarmstrong\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\19.1.2\\clangd_19.1.2\\bin\\clangd.exe",
     // CMake
     "cmake.configureOnOpen": false,
     "cmake.configureOnEdit": false,
@@ -56,7 +61,6 @@
     "julia.symbolCacheDownload": true,
     "julia.executablePath": "/opt/homebrew/bin/julia",
     "julia.enableCrashReporter": true,
-    "editor.minimap.enabled": false,
     // Copilot
     "github.copilot.advanced": {
         "authProvider": "github"
