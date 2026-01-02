@@ -43,10 +43,10 @@ return {
 
                     -- Execute a code action, usually your cursor needs to be on top of an error
                     -- or a suggestion from your LSP for this to activate.
-                    map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+                    map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
 
                     -- Find references for the word under your cursor.
-                    map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+                    map('gR', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
                     -- Jump to the implementation of the word under your cursor.
                     map('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -172,6 +172,7 @@ return {
                 cmake    = {}, -- CMake (a.k.a. cmake-language-server)
                 -- neocmake = {}, -- CMake (a.k.a. neocmakelsp) Requires Rust cargo
                 yamlls   = {}, -- YAML (a.k.a yaml-language-server)
+                rust = {}, -- Rust
                 lua_ls   = {   -- Lua (a.k.a. lua-language-server, sumneko_lua)
                     Lua = {
                         completion = { callSnippet = 'Replace', },

@@ -19,24 +19,45 @@ vim.cmd.colorscheme('vscode')
 -- vscode.load()
 
 --------------------------------------------------------------------------------
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>sf', builtin.find_files,  { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sk', builtin.keymaps,     { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>s/', builtin.live_grep,   { desc = '[S]earch by [G]rep' })
--- vim.keymap.set('n', '<leader>ps', function()
---     builtin.grep_string({ search = vim.fn.input("Grep > ") });
--- end)
+require("telescope").setup{
+    pickers = {
+        find_files = {
+            find_command = {
+                "rg",
+                "--files",
+                "--hidden",
+                "--glob=!**/.git/*",
+            },
+            hidden = true,
+        },
+    },
+}
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope find string" })
+vim.keymap.set("n", "<leader>fs", builtin.grep_string, { desc = "Telescope grep selection" })
 
 --------------------------------------------------------------------------------
 require("nvim-surround").setup()
-require('mini.align').setup()
-require('gitsigns').setup()
+require("mini.align").setup{
+    mappings = {
+       start = "ga", -- Keep default over LSP Goto Code Action
+    },
+}
+require("gitsigns").setup()
 
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "isort", "ruff" },
+    rust = { "rustfmt", lsp_format = "fallback" },
+  },
+})
 --------------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+-- vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+-- vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
 -- local navic = require("nvim-navic")
 -- local lspconfig = require("lspconfig")
 
@@ -83,8 +104,9 @@ local opts = {
         -- "gitignore",
         "make",
         "regex",
+        "rust",
         "toml",
-        "yaml"
+        "yaml",
     },
     -- Automatically install missing parsers when entering buffer
     -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally

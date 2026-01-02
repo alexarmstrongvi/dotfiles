@@ -25,6 +25,7 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export SCREENRC="$XDG_CONFIG_HOME/screen/screenrc"
 export HISTFILE="$XDG_STATE_HOME"/bash/history
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GHCUP_USE_XDG_DIRS=true
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"

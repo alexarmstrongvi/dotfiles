@@ -135,6 +135,7 @@ local plugins = {
 
     -- Fuzzy finder
     { 'nvim-telescope/telescope.nvim',
+        -- NOTE: LazyVim doesn't support tag='*' as recommended in telescope README
         branch = 'master',
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -142,11 +143,13 @@ local plugins = {
             -- Fuzzy Finder Algorithm which requires local dependencies to be built.
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
-                -- NOTE: If you are having trouble with this installation,
-                --       refer to the README for telescope-fzf-native for more instructions.
-                build = 'make',
+                build = [[ 
+                    cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release 
+                    && 
+                    cmake --build build --config Release --target install
+                ]],
                 cond = function()
-                    return vim.fn.executable 'make' == 1
+                    return vim.fn.executable 'cmake' == 1
                 end,
             },
         },
