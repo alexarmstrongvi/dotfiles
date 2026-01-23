@@ -18,3 +18,11 @@ vim.keymap.set('n', '<leader>fu',
     { desc = 'Telescope find references' }
 )
 
+-- Use Vim's formatter for gq (comment wrapping)
+vim.keymap.set("n", "gqq",
+    function()
+        vim.opt_local.formatexpr = ""
+        vim.cmd("normal! gq_")
+    end,
+    { desc = "Wrap current line (Vim)" }
+)

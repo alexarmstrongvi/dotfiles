@@ -161,7 +161,12 @@ return {
                 -- Langauage server installations are managed by mason
                 -- :Mason
                 vimls    = {}, -- Vim (a.k.a. vim-language-server)
-                pyright  = {}, -- Python
+                ---- Python ----
+                -- pyright  = {},
+                ruff  = {},
+                -- ty    = {},
+                pyrefly  = {},
+                -----------------
                 bashls   = {}, -- Bash (a.k.a. bash-language-server)
                 clangd   = { -- C, C++
                     -- clangd default is utf-16 (for vscode?) while neovim is
@@ -172,7 +177,7 @@ return {
                 cmake    = {}, -- CMake (a.k.a. cmake-language-server)
                 -- neocmake = {}, -- CMake (a.k.a. neocmakelsp) Requires Rust cargo
                 yamlls   = {}, -- YAML (a.k.a yaml-language-server)
-                rust = {}, -- Rust
+                rust_analyzer = {}, -- Rust
                 lua_ls   = {   -- Lua (a.k.a. lua-language-server, sumneko_lua)
                     Lua = {
                         completion = { callSnippet = 'Replace', },
@@ -184,14 +189,22 @@ return {
                 },
             }
 
+
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 'stylua', -- Used to format Lua code
             })
 
-            local lspconfig = require("lspconfig")
-            lspconfig.clangd.setup({
+            vim.lsp.config('clangd', {
                 cmd = { "clangd", "--clang-tidy"},
+            })
+            vim.lsp.config('ruff', {
+                init_options = {
+                    settings = {
+                        configuration = vim.fn.stdpath("config") .. "/../ruff/pyproject.toml",
+                        configurationPreference = "filesystemFirst",
+                    }
+                }
             })
 
             require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -210,6 +223,11 @@ return {
                     end,
                 },
             }
+
+            vim.lsp.enable("pyright", false)
+            vim.lsp.enable("ty", false)
+            -- vim.lsp.enable("pyrefly", false)
+            vim.lsp.enable("rust_analyzer")
         end,
     },
 }

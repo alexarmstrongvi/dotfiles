@@ -7,6 +7,12 @@ local plugins = {
     -- Language Server Protocol (LSP) configuration and plugins
     require("lex.plugins.lspconfig"),
 
+    -- Autoformatting
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    },
+
     -- Highlight, edit, and navigate code
     { 'nvim-treesitter/nvim-treesitter',
         dependencies = {

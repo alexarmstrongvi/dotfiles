@@ -1,13 +1,16 @@
 [tool.ruff.lint]
 select = ["ALL"]
+preview = true # Enable unstable rules in preview
 ignore = [
     # see https://docs.astral.sh/ruff/rules/
     ######################################## 
     # pycodestyle
     # - Removing multiple spaces (prevents alignment)
+    "E203",
     "E221",
     "E222",
     "E241",
+    "E251",
     "E271",
     "E272",
     ######################################## 
@@ -27,6 +30,7 @@ ignore = [
     ######################################## 
     # Miscellaneous
     "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+    "CPY001", # Checks for the absence of copyright notices
     "EM102",  # Exception must not use an f-string literal
     "ERA001", # Commented out code
     "FA102",  # Missing `from __future__ import annotations`, but uses PEP 585 collection

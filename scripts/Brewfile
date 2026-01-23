@@ -13,18 +13,14 @@ brew "doxygen"
 brew "fd"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Fast, Dynamic Programming Language
-brew "julia"
 # LLVM's OpenMP runtime library
 brew "libomp"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
+# Python
+brew "uv"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Safe, concurrent, practical language
@@ -47,14 +43,10 @@ cask "brave-browser"
 cask "discord"
 # Client for the Google Drive storage service
 cask "google-drive"
-# Minimal installer for conda
-cask "miniconda"
 # Note-taking tool for networked thought
 cask "roam-research"
 # Music streaming service
 cask "spotify"
-# Scientific Python IDE
-cask "spyder"
 # Video game digital distribution service
 cask "steam"
 # To-do list

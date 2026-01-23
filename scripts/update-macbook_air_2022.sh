@@ -9,9 +9,9 @@ brew missing
 uv tool upgrade --all
 
 # Anaconda
-conda update conda
+# conda update conda
 # conda update --all
-conda clean --all
+# conda clean --all
 # Repeat in each environment
 
 ## Manual
