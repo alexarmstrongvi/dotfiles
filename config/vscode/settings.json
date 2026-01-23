@@ -1,4 +1,7 @@
 {
+    ////////////////////////////////////////////////////////////////////////////
+    // VS Code builtins
+    ////////////////////////////////////////////////////////////////////////////
     // Text Editor
     "editor.renderWhitespace": "all",
     "editor.lineNumbers": "relative",
@@ -7,23 +10,39 @@
         100
     ],
     "editor.formatOnType": true,
+    "editor.minimap.enabled": false,
+    // File handling
+    "files.associations": {
+        "*.scxml": "xml"
+    },
+    "files.trimTrailingWhitespace": true,
     // Workbench
     "workbench.colorTheme": "Default Dark+",
     "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
     // Features - Notebook
     "notebook.lineNumbers": "on",
-    ////////////////////////////////////////////////////////////////////////////
     // Terminal
+    "terminal.integrated.profiles.windows" : {
+        "PowerShell 7" : {
+            "path" : "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        },
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell 7",
     "terminal.integrated.sendKeybindingsToShell" : true,
 
     ////////////////////////////////////////////////////////////////////////////
-    // Extensions 
+    // Extensions
     ////////////////////////////////////////////////////////////////////////////
     // Git
     "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
     // Vim
     "vim.smartRelativeLine": true,
     "vim.vimrc.enable": true,
+    "vim.handleKeys": {
+        "<C-p>": false
+    },
     // Python
     "python.linting.pylintEnabled": false,
     //"python.linting.mypyEnabled": true,
@@ -31,6 +50,9 @@
     "python.formatting.provider": "autopep8",
     "ruff.enable": true,
     "ruff.configuration": "$XDG_CONFIG_HOME/ruff/pyproject.toml",
+    // CMake
+    "cmake.configureOnOpen": false,
+    "cmake.configureOnEdit": false,
     // Julia
     "terminal.integrated.commandsToSkipShell": [
         "language-julia.interrupt",
@@ -39,9 +61,7 @@
     "julia.symbolCacheDownload": true,
     "julia.executablePath": "/opt/homebrew/bin/julia",
     "julia.enableCrashReporter": true,
-    "editor.minimap.enabled": false,
-    "git.openRepositoryInParentFolders": "never",
-    "workbench.sideBar.location": "right",
+    // Copilot
     "github.copilot.advanced": {
         "authProvider": "github"
     },
