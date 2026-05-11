@@ -12,3 +12,19 @@ Set-PSReadLineKeyHandler -Key 'Ctrl+k' -Function KillLine
 function prompt {
     "[$(Get-Date -Format 'HH:mm:ss')] $(Get-Location)`r`n> "
 }
+
+function Remove-TrailingWhitespace {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    Get-ChildItem -Path $Path -Recurse -File |
+    ForEach-Object {
+        $content = Get-Content -LiteralPath $_.FullName -Raw
+        $newContent = $content -replace '[ \t]+(?=\r?\n|$)', ''
+        if ($content -ne $newContent) {
+            [System.IO.File]::WriteAllText($_.FullName, $newContent)
+        }
+    }
+}
